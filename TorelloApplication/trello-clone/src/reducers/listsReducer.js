@@ -5,11 +5,25 @@ const initialState = [
     cards: [
       {
         id: 0,
-        title: "Setup Project"
+        text: "Setup Project"
       },
       {
         id: 1,
-        title: "Install necessary Packages"
+        text: "Install necessary Packages"
+      }
+    ]
+  },
+  {
+    title: "In Progress",
+    id: 1,
+    cards: [
+      {
+        id: 0,
+        text: "ERD Design"
+      },
+      {
+        id: 1,
+        text: "Install necessary Packages"
       }
     ]
   }

@@ -9,11 +9,27 @@ class App extends React.Component{
     return (
       <div className="App">
         <h2>Trello Clone</h2>
-        { lists.map(list => <TrelloList title={list.title} cards={list.cards}/>)}
+        <div style={ styles.listsContainer }>
+          { lists.map(list => 
+            <TrelloList 
+              title={list.title} 
+              cards={list.cards} 
+              key={list.id}
+            />
+          )}
+        </div>
       </div>
     )
   }
 }
+
+const styles = {
+  listsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    marginRight:8
+  }
+};
 
 const mapStateFromProps = state => ({
   lists: state.lists

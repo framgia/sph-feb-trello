@@ -1,14 +1,20 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-const TrelloCard = () => {
+const TrelloCard = ({ text }) => {
   return (
-    <Card>
+    <Card style={styles.cardContainer}>
       <Card.Body>
-        This is some text within a card body.
+        { text }
       </Card.Body>
     </Card>
   )
+}
+
+const styles = {
+	cardContainer: {
+		marginBottom: "10px",
+	}
 }
 
 export default TrelloCard;
