@@ -1,5 +1,6 @@
 import React from 'react';
 import TrelloCard from './TrelloCard.js';
+import TrelloActionButton from './TrelloActionButton.js'
 
 const TrelloList = ({title, cards}) => {
   return (
@@ -11,6 +12,7 @@ const TrelloList = ({title, cards}) => {
           key={card.id}
         /> 
       )}
+      <TrelloActionButton/>
     </div>
   );
 }
@@ -19,6 +21,7 @@ const styles = {
   container: {
     backgroundColor: "#dfe3e6",
     borderRadius: 3,
+    height: "1%",
     width: 300,
     padding: 8,
     marginRight:8

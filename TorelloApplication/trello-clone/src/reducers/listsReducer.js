@@ -20,10 +20,6 @@ const initialState = [
       {
         id: 0,
         text: "ERD Design"
-      },
-      {
-        id: 1,
-        text: "Install necessary Packages"
       }
     ]
   }
