@@ -2,6 +2,8 @@ import React from "react";
 import TextareaAutosize from 'react-textarea-autosize';
 import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { addList, addCard } from "../actions";
 
 class TrelloActionButton extends React.Component {
 
@@ -56,6 +58,32 @@ class TrelloActionButton extends React.Component {
     });
   }
 
+  handleAddCard = () => {
+  
+    const { dispatch, listId } = this.props;
+    const { text } = this.state;
+
+    if (text) {
+      dispatch(addCard(listId, text));
+      this.setState({
+        text: "",
+      })
+    }
+    
+    return;
+  }
+
+  handleAddList = () => {
+
+    const { dispatch } = this.props;
+    const { text } = this.state;
+    if (text) {
+      dispatch(addList(text));
+    }
+    
+    return;
+  }
+
   renderForm = () => {
     const { list } = this.props;
 
@@ -87,6 +115,7 @@ class TrelloActionButton extends React.Component {
         <div style={styles.formButtonGroup}>
           <Button 
             variant="success"
+            onMouseDown={ list ? this.handleAddList : this.handleAddCard }
           >
             {buttonTitle}
           </Button>
@@ -134,4 +163,4 @@ const styles = {
   }
 }
 
-export default TrelloActionButton;
+export default connect()(TrelloActionButton);

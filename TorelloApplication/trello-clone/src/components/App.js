@@ -16,6 +16,7 @@ class App extends React.Component{
             <TrelloList 
               title={list.title} 
               cards={list.cards} 
+              listId={list.id}
               key={list.id}
             />
           )}
