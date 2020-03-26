@@ -91,7 +91,7 @@ class TrelloActionButton extends React.Component {
             {buttonTitle}
           </Button>
           <i 
-            class="fa fa-times" 
+            className="fa fa-times" 
             style={{
               fontSize: 20,
               marginLeft: 4,
