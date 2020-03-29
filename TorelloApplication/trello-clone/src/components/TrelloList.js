@@ -23,6 +23,7 @@ const TrelloList = ({title, cards, listId}) => {
               /> 
             )}
           </div>
+
           <TrelloActionButton listId={listId}/>
           {provided.placeholder}
         </div>
