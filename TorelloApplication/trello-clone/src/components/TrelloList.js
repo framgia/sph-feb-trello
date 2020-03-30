@@ -13,14 +13,17 @@ const TrelloList = ({title, cards, listId}) => {
           style={styles.container}
         >
           <h4>{ title }</h4>
-          { cards.map((card, index) => 
-            <TrelloCard 
-              text={card.text} 
-              key={card.id}
-              index={index}
-              id={card.id}
-            /> 
-          )}
+          <div>
+            { cards.map((card, index) => 
+              <TrelloCard 
+                text={card.text} 
+                key={card.id}
+                index={index}
+                id={card.id}
+              /> 
+            )}
+          </div>
+
           <TrelloActionButton listId={listId}/>
           {provided.placeholder}
         </div>
