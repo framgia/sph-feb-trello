@@ -120,6 +120,7 @@ class TrelloActionButton extends React.Component {
             {buttonTitle}
           </Button>
           <i 
+            onClick={this.closeForm}
             className="fa fa-times" 
             style={{
               fontSize: 20,

@@ -2,13 +2,23 @@ import React from 'react';
 import TrelloList from './TrelloList.js';
 import { connect } from 'react-redux';
 import TrelloActionButton from './TrelloActionButton.js';
-import { DragDropContext } from 'react-beautiful-dnd';
+
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { sort } from "../actions";
+import styled from "styled-components";
+
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-right: 8px;
+  margin-top: 20px;
+`;
 
 class App extends React.Component{
 
   onDragEnd = (result) => {
-    const { destination, source, draggleId} = result;
+
+    const { destination, source, draggleId, type} = result;
 
     if(!destination) {
       return;
@@ -20,10 +30,10 @@ class App extends React.Component{
         destination.droppableId,
         source.index,
         destination.index,
-        draggleId
+        draggleId,
+        type
       )
     )
-
   };
 
   render(){
@@ -32,19 +42,32 @@ class App extends React.Component{
       <DragDropContext onDragEnd={ this.onDragEnd }>
         <div className="App" style={{ padding: 25}}>
           <h2>Trello Clone</h2>
-          <div style={ styles.listsContainer }>
-            { lists.map(list => 
-              <TrelloList 
-                title={list.title} 
-                cards={list.cards} 
-                listId={list.id}
-                key={list.id}
-              />
-            )}
-            <div style={styles.buttonContainer}>
-              <TrelloActionButton  list/>
-            </div>
-          </div>
+          <Droppable 
+            droppableId="all-lists" 
+            direction="horizontal" 
+            type="list"
+          >
+           {provided => (
+              <ListContainer 
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                { lists.map((list, index) => 
+                  <TrelloList 
+                    title={list.title} 
+                    cards={list.cards} 
+                    listId={list.id}
+                    key={list.id}
+                    index={index}
+                  />
+                )}
+                {provided.placeholder}
+                <div style={styles.buttonContainer}>
+                  <TrelloActionButton  list/>
+                </div>
+              </ListContainer>
+           )}
+          </Droppable>
         </div>
       </DragDropContext>
     )
@@ -52,12 +75,6 @@ class App extends React.Component{
 }
 
 const styles = {
-  listsContainer: {
-    display: "flex",
-    flexDirection: "row",
-    marginRight:8,
-    marginTop:20
-  },
   buttonContainer: {
     height: "1%",
     padding: "6px 8px"
