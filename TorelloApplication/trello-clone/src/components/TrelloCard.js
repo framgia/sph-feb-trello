@@ -4,7 +4,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
-  margin-bottom: "10px";
+  margin-bottom: 10px;
 `;
 
 const TrelloCard = ({ text, id, index}) => {
