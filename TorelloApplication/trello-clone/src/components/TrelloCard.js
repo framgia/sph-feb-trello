@@ -1,6 +1,11 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { Draggable } from 'react-beautiful-dnd';
+import styled from 'styled-components';
+
+const CardContainer = styled.div`
+  margin-bottom: 10px;
+`;
 
 const TrelloCard = ({ text, id, index}) => {
   return (
@@ -11,21 +16,17 @@ const TrelloCard = ({ text, id, index}) => {
           { ...provided.draggableProps}
           { ...provided.dragHandleProps}
         >
-          <Card style={styles.cardContainer}>
-            <Card.Body>
-              { text }
-            </Card.Body>
-          </Card>
+          <CardContainer>
+            <Card>
+              <Card.Body>
+                { text }
+              </Card.Body>
+            </Card>
+          </CardContainer>
         </div>
       )}
     </Draggable>
   )
-}
-
-const styles = {
-    cardContainer: {
-        marginBottom: "10px",
-    }
 }
 
 export default TrelloCard;
